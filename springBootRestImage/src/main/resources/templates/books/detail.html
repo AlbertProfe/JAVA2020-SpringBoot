@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="/webjars/bootstrap/4.2.1/css/bootstrap.min.css">
+<script src="/webjars/jquery/3.0.0/jquery.min.js"></script>
+<script src="/webjars/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+body {
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+	overflow: hidden;
+	background-color: #333;
+}
+
+.topnav a {
+	float: left;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+}
+
+.topnav a:hover {
+	background-color: #ddd;
+	color: black;
+}
+
+.topnav a.active {
+	background-color: #4CAF50;
+	color: white;
+}
+
+form {
+	margin: 20px;
+}
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #333;
+	color: white;
+	text-align: center;
+	padding: 12px 16px;
+}
+
+</style>
+</head>
+
+
+<body>
+
+	<div class="topnav">
+		<a th:href="@{home}">Home</a> <a class="active">Detail Book</a>
+	</div>
+	<Br>
+
+
+	
+		
+		
+<div class="w3-row">
+
+
+<div class="w3-col m2  w3-margin-left">
+  <div class="w3-card-4 " style="width:100%;">
+    <header class="w3-container w3-light-grey">
+      <h4>Programming</h4>
+    </header>
+
+    <div class="w3-container">
+      <p>Java</p>
+       <p>JavaScript</p>
+       <p>PHP</p>
+       <p>C++</p>
+       <p>C# /.NET</p>
+       <p>Python</p>
+       <p>C/C#</p>
+       <p>C# /.NET</p>
+       <p>Python</p>
+     <button class="w3-button w3-green w3-small" >Options</button>
+    
+    </div>
+    <footer class="w3-container w3-light-grey">
+      <h5>+ Others</h5>
+    </footer>
+  </div>
+</div>
+  
+
+  <div class="w3-col m7  w3-center">
+ <div class="w3-container" align="center">
+		<div class="w3-card-4" style="width: 100%">
+			<header class="w3-container w3-light-grey">
+				<h3 th:text="${book.title}"></h3>
+			</header>
+			<div class="w3-container">
+			<span class=" w3-margin-right w3-justify w3-text-dark-grey"> Lisa Jewell (Author)</span>
+                    <span class=" w3-margin-right w3-justify w3-text-dark-grey">  Dreamscape Media, LLC (Publisher)</span>
+				
+				<hr>
+				<p th:with="tagbookimage = ${book.title}">
+					<img
+						th:src="@{'http://localhost:8081/webapi/books/'+ ${tagbookimage}}"
+						alt="bookplaceholder"  class="w3-left  w3-margin-right" style="width:200px">
+					<p class="w3-left  w3-margin-right" th:text="${book.pages}"></p>
+					<br>
+                    <p class=" w3-margin-right w3-justify w3-text-grey"> Fifteen-year-old Ellie Mack was the perfect daughter. She was beloved by her parents, friends, and teachers. She and her boyfriend made a teenage golden couple. She was days away from an idyllic summer vacation, with her whole life ahead of her. And then she was gone. </p>
+                  
+                    <p th:text="${book.ISBN}" class=" w3-margin-right w3-justify w3-text-blue"></p>
+                   
+                     <p class=" w3-margin-right w3-justify w3-text-green">  30 days</p>                  
+				</div><br>
+				<button class="w3-button  w3-red w3-small" >52 days</button>
+				<button class="w3-button  w3-dark-grey w3-small" >+ Book now</button>
+				<button class="w3-button w3-green w3-small" >Readers Review</button>
+				<button class="w3-button w3-grey w3-small" >+ Follow </button>
+			</div>
+		</div>   
+  </div>
+  
+  
+  <div class="w3-col m2 ">
+ <div class="w3-card-4 w3-left" style="width:100%;">
+    <header class="w3-container w3-light-grey">
+      <h4>Related Books</h4>
+    </header>
+
+    <div class="w3-container">
+      <p> Effective Java </p>
+       <p>Clean Code</p>
+       <p>Java Concurrency in Practice</p>
+       <p>Head First Design Patterns</p>
+       <p>Spring in Action</p>
+       <p>Test Driven</p>
+       <p> The Definitive Guide of Java Performance</p>
+      
+
+     <button class="w3-button w3-green w3-small" >Options</button>
+   
+    </div>
+
+    <footer class="w3-container w3-light-grey">
+      <h5>+ Others</h5>
+    </footer>
+  </div>
+  </div>		
+</div>
+
+<form action="library" align="center">
+<input type="submit" value="Library" class="btn btn-success btn-sm" />
+</form>
+
+	<br>
+	<br>
+	<br>
+	<div class="footer">
+		<p>PQTM CIFO Violeta 2019</p>
+	</div>
+</body>
+</html>

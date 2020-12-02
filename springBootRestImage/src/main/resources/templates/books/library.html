@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<link rel="stylesheet" href="/webjars/bootstrap/4.2.1/css/bootstrap.min.css">
+<script src="/webjars/jquery/3.0.0/jquery.min.js"></script>
+<script src="/webjars/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<style>
+table , form {
+	margin:20px;
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+form { margin: 20px;}
+
+div.absolute {
+  position: absolute;
+  top: 80px;
+  right: 450px;
+  width: ;
+  height: ;
+  border;
+}
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #333;
+   color: white;
+   text-align: center;
+   padding: 12px 16px;
+ 
+}
+</style>
+</head>
+<body>
+<div class="topnav">
+ <a th:href="@{home}" >Home</a>
+ <a class="active" >Library</a>  
+</div>
+<Br>
+<div class="absolute">
+<table >
+<tr><h5> Library</h5></tr>
+<tr>
+	<th>Title</th>
+	<th>ISBN</th>
+	<th>Pages</th>
+	<th>Option</th>
+	<tr th:each="book:${library}">
+		<td th:text="${book.title}"></td>
+		<td th:text="${book.ISBN}"></td>
+		<td th:text="${book.pages}"></td>
+            <td><a th:href="@{deleteBook(title=${book.title})}"  
+               class="btn btn-danger btn-sm">Delete</a></td>
+               <td><a th:href="@{detailBook(title=${book.title})}"  
+               class="btn btn-success btn-sm">Detail</a></td>
+	</tr>
+</table>
+<div>
+<form action="newBook">
+<input type="submit" value="New Book" class="btn btn-success btn-sm"/>
+</div>
+	<div class="footer">
+  <p>PQTM CIFO Violeta 2019</p>
+</div>
+</form>
+</html>
+
