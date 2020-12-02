@@ -55,6 +55,22 @@ public class ProductController {
 		return "shoping/detail.html";
 	}
 	
+	@RequestMapping(value = "/modifyItem", method = RequestMethod.GET)
+	public String modifyProduct (@RequestParam("itemId") Long id, Model model) {
+
+		model.addAttribute("item", service.findById(id));
+		//System.out.println(service.findById(id));
+		return "shoping/updateItem.html";
+	}
+	
+	@RequestMapping("/updateItem")
+	public String updateProduct (Product product, Model model) {
+
+		//System.out.println(product);
+		service.insertProduct (product);
+		return "redirect:/products/show";
+	}
+	
 	
 	
 

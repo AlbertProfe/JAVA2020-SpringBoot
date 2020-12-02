@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<h3>Item Update</h3>
+
+<table>
+	<tr>
+		<td>Session id:</td>
+		<td th:text="${session.sid}"></td>
+	</tr>
+	<tr>
+		<td>Customer:</td>
+		<td
+			th:text="${session.customer.firstName+ ' '+session.customer.lastName }"></td>
+	</tr>
+	<tr>
+		<td>Status:</td>
+		<td th:text="${session.status}"></td>
+	</tr>
+</table>
+<Br>
+
+<form action="updateItem">
+
+
+	<p>
+		<label>Item id:</label>
+		
+		<input readonly name="id" 
+			type="number"  th:value="${item.id}" >
+	</p>
+	<p>
+		<label>Item name:</label>
+	
+		<input name="name"
+			type="text"  th:value="${item.name}" >
+	</p>
+	<p>
+		<label>Item Brand:</label> <input name="brand"
+			type="text"  th:value="${item.brand}">
+	</p>
+	<p>
+		<label>Item made-in:</label> <input name="madein"
+			type="text" th:value="${item.madein}">
+	</p>
+	
+	<p>
+		<label>Item price:</label> <input name="price"
+			type="number" th:value="${item.price}">
+	</p>
+	<p>
+		<button>Update</button>
+	</p>
+
+</form>
+
+
+<Br>
+
+</html>
