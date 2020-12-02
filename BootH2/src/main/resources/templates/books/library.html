@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<style>
+* {
+	box-sizing: border-box;
+}
+
+/* Create two unequal columns that floats next to each other */
+.column {
+	float: left;
+	padding: 10px;
+	height: 800px; /* Should be removed. Only for demonstration */
+}
+
+.left {
+	width: 25%;
+}
+
+.right {
+	width: 75%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+</style>
+
+<title>Library example</title>
+
+<body>
+	<div class="w3-responsive">
+		<div class="row">
+			<div class="column">
+				<h2>Library</h2>
+			</div>
+			<div class="column">
+				<h2>Table of books with CSS, two columns and some text</h2>
+				<p>The HTML template Thymeleaf recives data from model object
+					with attribute tag "library" and uses it with "th" tags, we also
+					use W3 Schools CSS</p>
+				<p>The w3-table-all class combines the w3-table, w3-bordered,
+					w3-striped and w3-border with classes - w3-hoverable- to show all
+					the books ....</p>
+					
+				<table class="w3-table-all w3-hoverable">
+					<thead>
+						<tr class="w3-blue">
+							<th>Title</th>
+							<th>ISBN</th>
+							<th>Pages</th>
+							<th>Year</th>
+							<th>Author</th>
+						</tr>
+					</thead>
+					<tr th:each="book:${library}">
+						<td th:text="${book.title}"></td>
+						<td th:text="${book.ISBN}"></td>
+						<td th:text="${book.pages}"></td>
+						<td th:text="${book.year}"></td>
+						<td th:text="${book.author}"></td>
+					</tr>
+				</table>
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>
