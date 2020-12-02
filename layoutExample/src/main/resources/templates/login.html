@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<title>Log in</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+		<div class="w3-container w3-margin">
+
+			<div class="col-md-12">
+				<h1>Login</h1>
+				<p>Now you are logged in</p>
+			</div>
+			<div class="w3-container">
+				<h2>Closable List Items</h2>
+				<p>To close/hide the list items, click on the "x":</p>
+				<ul class="w3-ul w3-card-4">
+					<li class="w3-display-container">Jill <span
+						onclick="this.parentElement.style.display='none'"
+						class="w3-button w3-transparent w3-display-right">&times;</span></li>
+					<li class="w3-display-container">Adam <span
+						onclick="this.parentElement.style.display='none'"
+						class="w3-button w3-transparent w3-display-right">&times;</span></li>
+					<li class="w3-display-container">Eve <span
+						onclick="this.parentElement.style.display='none'"
+						class="w3-button w3-transparent w3-display-right">&times;</span></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+
+
+</body>
+</html>
