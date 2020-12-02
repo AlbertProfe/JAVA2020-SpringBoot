@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<h3>Item Detail</h3>
+
+<table>
+	<tr>
+		<td>Session id:</td>
+		<td th:text="${session.sid}"></td>
+	</tr>
+	<tr>
+		<td>Customer:</td>
+		<td
+			th:text="${session.customer.firstName+ ' '+session.customer.lastName }"></td>
+	</tr>
+	<tr>
+		<td>Status:</td>
+		<td th:text="${session.status}"></td>
+	</tr>
+</table>
+<Br>
+
+<table>
+	<tr>
+		<td>Item id:</td>
+		<td th:text="${item.id}"></td>
+	</tr>
+	<tr>
+		<td>Item name:</td>
+		<td th:text="${item.name}"></td>
+	</tr>
+	<tr>
+		<td>Item brand:</td>
+		<td th:text="${item.brand}"></td>
+	</tr>
+	<tr>
+		<td>Item madein:</td>
+		<td th:text="${item.madein}"></td>
+	</tr>
+	<tr>
+		<td>Item price:</td>
+		<td th:text="${#numbers.formatCurrency(item.price)}"></td>
+	</tr>
+</table>
+
+<Br>
+
+<p>
+	<a th:href="@{/cart/addToCart(itemId=${item.id})}">Add to Cart</a>
+</p>
+<Br><Br><Br><Br>
+<div>
+		<table>
+			<tr>
+
+				<td><a th:href="@{/products/show}">Product List</a></td>
+				<td><a th:href="@{/cart/show}">My cart</a></td>
+				<td><a th:href="@{/creditcards/addCreditCard}">Add Card</a></td>
+				<td><a th:href="@{/customers/addCustomer}">Add Client</a></td>
+				<td><a th:href="@{/creditcards/show}">List of Cards</a></td>
+				<td><a th:href="@{/customers/show}">List of clients</a></td>
+			</tr>
+		</table>
+	</div>
+</html>

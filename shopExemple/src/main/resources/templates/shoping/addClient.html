@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<h3>Add Client form</h3>
+
+<form action="insertCustomer">
+	<p>
+		<label>First Name</label> <input name="firstName"
+			type="text">
+	</p>
+	<p>
+		<label>Last Name</label> <input name="lastName"
+			type="text">
+	</p>
+	<p>
+		<button>Add</button>
+	</p>
+</form>
+<Br><Br><Br><Br>
+<div>
+		<table>
+			<tr>
+
+				<td><a th:href="@{/products/show}">Product List</a></td>
+				<td><a th:href="@{/cart/show}">My cart</a></td>
+				<td><a th:href="@{/creditcards/addCreditCard}">Add Card</a></td>
+				<td><a th:href="@{/customers/addCustomer}">Add Client</a></td>
+				<td><a th:href="@{/creditcards/show}">List of Cards</a></td>
+				<td><a th:href="@{/customers/show}">List of clients</a></td>
+			</tr>
+		</table>
+	</div>
+</html>

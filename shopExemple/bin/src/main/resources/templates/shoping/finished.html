@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<h3>Confirmed Buy</h3>
+
+<table>
+	<tr>
+		<td>Session id:</td>
+		<td th:text="${sid}"></td>
+	</tr>
+	<tr>
+		<td>Customer:</td>
+		<td th:text="${customer.firstName + ' ' +  customer.lastName}"></td>
+	</tr>
+	<tr>
+		<td>Status:</td>
+		<td th:text="${status}"></td>
+	</tr>
+	<tr>
+		<td>Session:</td>
+		<td>httpSession object session is invalidated</td>
+	</tr>
+</table>
+<Br>
+<!-- <table>
+
+	<tr th:each="item:${cart}">
+		<td th:text="${item.id}"></td>
+		<td th:text="${item.name}"></td>
+		<td th:text="${item.brand}"></td>
+		<td th:text="${item.madein}"></td>
+	</tr>
+
+</table> -->
+<Br>
+
+<a th:href="@{/}">Home</a>
+
+</html>

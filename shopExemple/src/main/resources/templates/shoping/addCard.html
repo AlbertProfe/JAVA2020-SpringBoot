@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<h3>Add Card form</h3>
+
+<!-- <form action="insertCreditCard"> -->
+<form th:action="@{/creditcards/insertCreditCard}" th:object="${creditCard}" method="post">
+     
+	<p>
+		<label>Type Credit Card</label> <input name="typeCreditCard"
+			type="text">
+	</p>
+	<p>
+		<label>Number Credit Card</label> <input name="numberCreditCard"
+			type="text">
+	</p>
+	<p>
+		<label>Loan</label> <input name="loan" type="number">
+	</p>
+
+		<div th:object="${client}">
+			<label>Select Customer</label>
+			<select id="selectCustomer" name="idCustomer">
+				<option th:value="0">No customer</option>
+				<option th:each="client : ${clients}" th:value="${client.id}" 
+					th:text="${client.id}+' : '+${client.firstName}+'  '+${client.lastName}"></option>
+			</select>
+		</div>
+	<p>
+		<button type="submit">Add</button>
+	</p>
+	
+</form>
+<Br><Br><Br><Br>
+<div>
+		<table>
+			<tr>
+
+				<td><a th:href="@{/products/show}">Product List</a></td>
+				<td><a th:href="@{/cart/show}">My cart</a></td>
+				<td><a th:href="@{/creditcards/addCreditCard}">Add Card</a></td>
+				<td><a th:href="@{/customers/addCustomer}">Add Client</a></td>
+				<td><a th:href="@{/creditcards/show}">List of Cards</a></td>
+				<td><a th:href="@{/customers/show}">List of clients</a></td>
+			</tr>
+		</table>
+	</div>
+</html>
