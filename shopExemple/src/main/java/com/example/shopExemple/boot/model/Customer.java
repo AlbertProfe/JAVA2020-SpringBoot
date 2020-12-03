@@ -1,6 +1,5 @@
 package com.example.shopExemple.boot.model;
 
-
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class Customer {
 	// ...
@@ -21,13 +19,16 @@ public class Customer {
 	private String firstName;
 	private String lastName;
 
-	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY,
-          cascade = CascadeType.ALL)
-	//@JsonIgnore
+	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	// @JsonIgnore
 	private List<CreditCard> creditCards;
 
-	public Customer() {}
-	
+	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL) // @JsonIgnore private
+																							// List<Order> orders;
+	private List<OrderShop> orders;
+
+	public Customer() {
+	}
 
 	public Customer(String firstName, String lastName) {
 		this.firstName = firstName;
@@ -55,18 +56,17 @@ public class Customer {
 		return creditCards;
 	}
 
-	
-	  public void setCreditCard(List<CreditCard> creditCards) { 
-		  this.creditCards = creditCards; }
-	 
+	public void setCreditCard(List<CreditCard> creditCards) {
+		this.creditCards = creditCards;
+	}
 
-		/*
-		 * public void addCreditCard (CreditCard creditcard) {
-		 * creditCards.add(creditcard); creditcard.setCustomer(this);
-		 * 
-		 * }
-		 */
-	
+	/*
+	 * public void addCreditCard (CreditCard creditcard) {
+	 * creditCards.add(creditcard); creditcard.setCustomer(this);
+	 * 
+	 * }
+	 */
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -79,6 +79,12 @@ public class Customer {
 		this.lastName = lastName;
 	}
 
-	
+	public List<OrderShop> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<OrderShop> orders) {
+		this.orders = orders;
+	}
 
 }

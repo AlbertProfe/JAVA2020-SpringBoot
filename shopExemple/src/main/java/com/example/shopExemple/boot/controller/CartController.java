@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.shopExemple.boot.model.OrderShop;
 import com.example.shopExemple.boot.model.Product;
 import com.example.shopExemple.boot.model.ProductCart;
+import com.example.shopExemple.boot.service.OrderShopService;
 import com.example.shopExemple.boot.service.ProductService;
 import com.example.shopExemple.boot.utils.controller.StatusSession;
+
 
 @Controller
 @RequestMapping(value = "cart")
@@ -27,6 +30,9 @@ public class CartController {
 	@Autowired
 	ProductService service;
 
+	@Autowired
+	OrderShopService orderservice;
+	
 	@RequestMapping(value = "show", method = RequestMethod.GET)
 	public String homeCart() {
 		return "shoping/cart";
@@ -47,6 +53,12 @@ public class CartController {
 			cart.add(new ProductCart(service.findById(id), 1));
 			session.setAttribute("cart", cart);
 			session.setAttribute("status", StatusSession.TOBUY);
+			
+			
+			orderservice.setStatusOrderShop(session);
+			
+			
+			
 			
 
 		} else {

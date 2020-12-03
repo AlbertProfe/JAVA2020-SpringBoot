@@ -12,7 +12,7 @@
 	<tr>
 		<td>Customer:</td>
 		<td
-			th:text="${session.customer.firstName+ ' '+session.customer.lastName }"></td>
+			th:text="${session.customer.firstName+ ' ' +session.customer.lastName }"></td>
 	</tr>
 	<tr>
 		<td>Status:</td>
@@ -54,7 +54,21 @@
 	</p>
 
 </form>
+<Br><Br><Br><Br><Br>
+	
+	<div>
+		<table>
+			<tr>
 
+				<td><a th:href="@{/products/show}">Product List</a></td>
+				<td><a th:href="@{/cart/show}">My cart</a></td>
+				<td><a th:href="@{/creditcards/addCreditCard}">Add Card</a></td>
+				<td><a th:href="@{/customers/addCustomer}">Add Client</a></td>
+				<td><a th:href="@{/creditcards/show}">List of Cards</a></td>
+				<td><a th:href="@{/customers/show}">List of clients</a></td>
+			</tr>
+		</table>
+	</div>
 
 <Br>
 

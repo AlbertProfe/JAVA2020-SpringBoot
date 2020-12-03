@@ -3,6 +3,7 @@ package com.example.shopExemple.boot.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,14 +16,24 @@ public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID")
 	private Long id;
+	@Column(name = "NAME")
 	private String name;
+	@Column(name = "BRAND")
 	private String brand;
+	@Column(name = "MADEIN")
 	private String madein;
+	@Column(name = "PRICE")
 	private double price;
 
-	public Product() {}
-	
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	// @JsonIgnore private List<Order> orders;
+	private List<OrderDetail> ordersDetail;
+
+	public Product() {
+	}
+
 	public Product(Long id, String name, String brand, String madein, double price) {
 		super();
 		this.id = id;
@@ -76,6 +87,14 @@ public class Product {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public List<OrderDetail> getOrdersDetail() {
+		return ordersDetail;
+	}
+
+	public void setOrdersDetail(List<OrderDetail> ordersDetail) {
+		this.ordersDetail = ordersDetail;
 	}
 
 }

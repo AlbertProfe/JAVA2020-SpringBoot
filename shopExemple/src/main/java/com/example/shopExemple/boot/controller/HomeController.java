@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.shopExemple.boot.model.Customer;
+import com.example.shopExemple.boot.model.OrderShop;
 import com.example.shopExemple.boot.service.CustomerService;
+import com.example.shopExemple.boot.service.OrderShopService;
 import com.example.shopExemple.boot.utils.controller.StatusSession;
 
 /**
@@ -29,10 +31,12 @@ import com.example.shopExemple.boot.utils.controller.StatusSession;
  */
 @Controller
 public class HomeController {
-	
-	
+
 	@Autowired
-	CustomerService service;
+	CustomerService customerservice;
+
+	@Autowired
+	OrderShopService orderservice;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/**
@@ -41,53 +45,74 @@ public class HomeController {
 
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpSession session) {
-		logger.info("Welcome home! The client locale is {}.", locale);
 
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		//if (session.getAttribute("sid") == null) {
 
-		String formattedDate = dateFormat.format(date);
+			logger.info("Welcome home! The client locale is {}.", locale);
 
-		model.addAttribute("serverTime", formattedDate);
-		model.addAttribute("msg", "Welcome to our shooping center, enjoy your stay, and buy some beans or entities ...");
-		
-		
-		String sid = session.getId();
-		session.setAttribute("sid", sid);
-		//System.out.println("Session id: " + sid);
-		
-		session.setAttribute("status", StatusSession.CREATED);
-		session.setAttribute("timestamp", formattedDate);
-		
-		//System.out.println(session.getServletContext());
-		//System.out.println(session.getSessionContext());
-		//to-do as a LOG
-		
+			Date date = new Date();
+			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
-		model.addAttribute("clients", service.findAll());
-		
-		
-		return "shoping/login";
+			String formattedDate = dateFormat.format(date);
+
+			model.addAttribute("serverTime", formattedDate);
+			model.addAttribute("msg",
+					"Welcome to our shooping center, enjoy your stay, and buy some beans or entities ...");
+
+			String sid = session.getId();
+			session.setAttribute("sid", sid);
+			// System.out.println("Session id: " + sid);
+
+			session.setAttribute("status", StatusSession.CREATED);
+			session.setAttribute("timestamp", formattedDate);
+
+			// System.out.println(session.getServletContext());
+			// System.out.println(session.getSessionContext());
+			// to-do as a LOG
+
+			model.addAttribute("clients", customerservice.findAll());
+
+			return "shoping/login";
+		//}
+
+		//else
+		//	return "redirect:products/show";
 	}
-		
+
 	@RequestMapping(value = { "/loginCustomer" }, method = RequestMethod.POST)
-	public String loginCustomer ( @RequestParam("idCustomer") Long id, Model model, HttpSession session) {
-		
-		
-		Optional<Customer> foundCustomer = service.findById(id);
-	
+	public String loginCustomer(@RequestParam("idCustomer") Long id, Model model, HttpSession session) {
+
+		Optional<Customer> foundCustomer = customerservice.findById(id);
 
 		// Search for a book with an invalid ID
-		if (foundCustomer.isPresent()) session.setAttribute("customer", foundCustomer.get());
-		
+		if (foundCustomer.isPresent())
+
+		{
+			session.setAttribute("customer", foundCustomer.get());
+			
+			OrderShop orderShop = new OrderShop();
+			
+			//orderShop.setIdSessionShop((String) session.getAttribute("sid"));
+			orderShop.setIdSessionShop( session.getAttribute("sid").toString());
+			orderShop.setStatusShop(session.getAttribute("status").toString());
+			orderShop.setTimeStampShop(session.getAttribute("timestamp").toString());
+			orderShop.setCustomer(foundCustomer.get());
+
+			orderservice.insertOrder(orderShop);
+			session.setAttribute("orderShop",  orderShop  );
+			
+			session.setAttribute("idShop", orderShop.getIdShop());
+			
+
+		}
+
 		return "shoping/home";
 	}
-	
+
 	@RequestMapping(value = { "/*" }, method = RequestMethod.GET)
-	public String error (Locale locale, Model model, HttpSession session) {
-		
-		
-		//to-do error site
+	public String error(Locale locale, Model model, HttpSession session) {
+
+		// to-do error site
 		return "shoping/error";
 	}
 
