@@ -35,13 +35,25 @@
 			</td>
 			
 	</table>
+	
+	<table>
+	<tr>
+		<td>Total</td>
+		<td th:text="${#numbers.formatCurrency(session.total)}"></td>
+	</tr>
+	</table>
+<Br><Br>
+<p>Pick your delivery date:</p>
 
+  <label for="birthday">Delivery date:</label>
+  <input type="date" id="deliveryDate" name="deliveryDate">
+  
 
-<Br>
-
-
+<Br><Br><Br>
+<p>Choose your credit card:</p>
+<Br><Br><Br>
 <a th:href="@{/pay/payWithCard}">Pay with Credit Card</a>
-<Br><Br><Br><Br>
+<Br><Br>
 <div>
 		<table>
 			<tr>

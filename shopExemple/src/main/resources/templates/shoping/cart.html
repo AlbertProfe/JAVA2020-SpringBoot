@@ -35,6 +35,13 @@
 				from Cart</a></td>
 	</tr>
 </table>
+
+<table>
+	<tr>
+		<td>Total</td>
+		<td th:text="${#numbers.formatCurrency(session.total)}"></td>
+	</tr>
+	</table>
 <Br><Br>
 
 <Br>

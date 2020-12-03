@@ -20,7 +20,18 @@
 		<td>httpSession object session is invalidated</td>
 	</tr>
 </table>
-<Br>
+<Br><Br><Br>
+<table>
+	<tr>
+		<td>Your buy has finished and you will receive your parcel in 2 days. Total paid: </td>
+		<td th:text="${#numbers.formatCurrency(total)}"></td>
+	</tr>
+</table>
+
+<Br><Br><Br>
+
+
+
 <!-- <table>
 
 	<tr th:each="item:${cart}">

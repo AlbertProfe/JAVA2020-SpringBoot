@@ -22,7 +22,6 @@ import com.example.shopExemple.boot.service.OrderShopService;
 import com.example.shopExemple.boot.service.ProductService;
 import com.example.shopExemple.boot.utils.controller.StatusSession;
 
-
 @Controller
 @RequestMapping(value = "cart")
 public class CartController {
@@ -32,7 +31,7 @@ public class CartController {
 
 	@Autowired
 	OrderShopService orderservice;
-	
+
 	@RequestMapping(value = "show", method = RequestMethod.GET)
 	public String homeCart() {
 		return "shoping/cart";
@@ -43,29 +42,24 @@ public class CartController {
 
 		// ProductModel productModel = new ProductModel();
 		// ProductAmount productAmount = new ProductAmount();
-		
-		
+
+		List<ProductCart> cart;
 
 		if (session.getAttribute("cart") == null) {
 
-			List<ProductCart> cart = new ArrayList<ProductCart>();
+			cart = new ArrayList<ProductCart>();
 
 			cart.add(new ProductCart(service.findById(id), 1));
 			session.setAttribute("cart", cart);
 			session.setAttribute("status", StatusSession.TOBUY);
-			
-			
+
 			orderservice.setStatusOrderShop(session);
-			
-			
-			
-			
 
 		} else {
 
-			List<ProductCart> cart = (List<ProductCart>) session.getAttribute("cart");
+			cart = (List<ProductCart>) session.getAttribute("cart");
 
-			int index = this.exists(id, cart);
+			int index = exists(id, cart);
 			if (index == -1) {
 				cart.add(new ProductCart(service.findById(id), 1));
 			} else {
@@ -75,9 +69,10 @@ public class CartController {
 
 			session.setAttribute("cart", cart);
 		}
-
 		
-
+		
+		calculateTotal(cart,session);
+		
 		return "redirect:/cart/show";
 	}
 
@@ -86,8 +81,8 @@ public class CartController {
 
 		// ProductModel productModel = new ProductModel();
 		List<ProductCart> cart = (List<ProductCart>) session.getAttribute("cart");
-		
-		int index = this.exists(id, cart);
+
+		int index = exists(id, cart);
 		int quantity = cart.get(index).getQuantity();
 
 		if (quantity > 0) {
@@ -103,9 +98,7 @@ public class CartController {
 		return "redirect:/cart/show";
 	}
 
-	
-
-	private int exists(Long id, List<ProductCart> cart) {
+	private static int exists(Long id, List<ProductCart> cart) {
 
 		for (int i = 0; i < cart.size(); i++) {
 
@@ -117,4 +110,15 @@ public class CartController {
 		return -1;
 	}
 
-}
+	private static void calculateTotal ( List<ProductCart> cart, HttpSession session) {
+
+		Double total = 0.0;
+
+		for (ProductCart productCart : cart) {
+
+			total = total + (productCart.getProduct().getPrice() * productCart.getQuantity());
+		}
+
+		session.setAttribute("total", total);
+	}
+} 
