@@ -94,6 +94,7 @@ public class CartController {
 		}
 
 		session.setAttribute("cart", cart);
+		calculateTotal(cart,session);
 
 		return "redirect:/cart/show";
 	}

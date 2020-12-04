@@ -32,8 +32,7 @@ public class OrderShopService {
 
 		return repository.findById(id);
 	}
-	
-	
+		
 	public void setStatusOrderShop(HttpSession session) {
 
 		Optional<OrderShop> orderShopFound = this.findById((Long) session.getAttribute("idShop"));

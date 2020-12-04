@@ -22,9 +22,4 @@ public enum StatusSession {
 	        public String toString() {
 	          return "Finished";
 	        }},
-	
-
-
-
-
 }

@@ -60,16 +60,18 @@ public class PayController {
 
 			session.setAttribute("status", StatusSession.FINISHED);
 			model.addAttribute("status", session.getAttribute("status"));
+			model.addAttribute("total", session.getAttribute("total"));
 			
 			orderservice.setStatusOrderShop(session);
 			
-			OrderDetail orderDetail = new OrderDetail();
+			OrderDetail orderDetail;
 			OrderShop orderShop = (OrderShop) session.getAttribute("orderShop");
 			
 			List<ProductCart> cart = (List<ProductCart>) session.getAttribute("cart");
 			
 			for (ProductCart productCart : cart) {
 				
+				orderDetail = new OrderDetail();
 				orderDetail.setQuantity(productCart.getQuantity());
 				orderDetail.setOrderShop(orderShop);
 				orderDetail.setProduct(productCart.getProduct());
