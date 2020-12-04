@@ -71,6 +71,9 @@ public class HomeController {
 			// to-do as a LOG
 
 			model.addAttribute("clients", customerservice.findAll());
+			
+			
+			//session.setMaxInactiveInterval(60);
 
 			return "shoping/login";
 		//}
